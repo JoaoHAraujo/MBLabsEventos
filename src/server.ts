@@ -1,6 +1,6 @@
-import "reflect-metadata";
-import express from "express";
+import app from "./app";
 
-const app = express();
-
-app.listen(3000, () => console.log("Server is running"));
+app.listen(3333, () => {
+  // console.log(`Server is running on: localhost:${PORT}/api/v1`);
+  console.log(`Aplication running on: http://localhost:3333/api/v1`)
+});
