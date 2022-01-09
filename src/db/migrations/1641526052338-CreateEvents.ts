@@ -10,6 +10,8 @@ export class CreateEvents1641526052338 implements MigrationInterface {
             name: "id",
             type: "uuid",
             isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()'
           },
           {
             name: "title",
