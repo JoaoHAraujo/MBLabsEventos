@@ -1,25 +1,18 @@
-import { Request, response, Response } from "express";
-import { UserService } from "../services/user";
+import { Request, Response } from "express";
+import UserService from "../services/user";
 
 export class UserController {
-  private userService = new UserService();
+  // private userService = UserService;
 
   async save(req: Request, res: Response) {
-    const { name, age, email, cpfcnpj, profile_type, password } = req.body;
-
+    const userService = UserService;
     try {
-        const result = await this.userService.createUser({
-          name,
-          age,
-          email,
-          cpfcnpj,
-          profile_type,
-          password,
-        });
-        return response.json(result) //verificar e editar dados retornados
+        const result = await userService.createUser(req.body);
+        return res.json(result)
         
     } catch (error) {
-        return response.status(400).json(error.message)
+      console.log(error)
+        return res.status(400).json(error.message)
     }
 
 

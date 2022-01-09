@@ -1,13 +1,11 @@
+import { getRepository, Repository } from "typeorm";
 import { User } from "../entities/User";
-import { getRepository } from "typeorm";
 
-export class UserRepository {
-  private userRepository = getRepository(User);
+class UserRepository {
+  private userRepository: Repository<User> = getRepository(User);
 
-  async checkUser(user: User): Promise<User> {
-    const existentUser = await this.userRepository.findOne({
-      where: [{ email: user.name }, { cpfcnpj: user.cpfcnpj }],
-    });
+  async check(opt: Object): Promise<User> {
+    const existentUser = await this.userRepository.findOne(opt);
     return existentUser;
   }
 
@@ -15,3 +13,6 @@ export class UserRepository {
     return await this.userRepository.save(user);
   }
 }
+
+
+export default new UserRepository();
