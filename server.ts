@@ -1,6 +1,9 @@
-import app from "./src/app";
+import { initDatabase } from "./src/db";
 
-app.listen(3333, () => {
-  // console.log(`Server is running on: localhost:${PORT}/api/v1`);
-  console.log(`Aplication running on: http://localhost:3333`);
-});
+(async (): Promise<void> => {
+  await initDatabase();
+  const app = require("./src/app").default;
+  app.listen(3333, () => {
+    console.log(`Aplication running on: http://localhost:3333`);
+  });
+})();
