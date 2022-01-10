@@ -4,15 +4,23 @@ import { User } from "../entities/User";
 class UserRepository {
   private userRepository: Repository<User> = getRepository(User);
 
-  async check(opt: Object): Promise<User> {
+  async findOne(opt: Object): Promise<User> {
     const existentUser = await this.userRepository.findOne(opt);
     return existentUser;
   }
 
-  async create(user: User): Promise<User> {
+  async findAll() {
+    const allUsers = await this.userRepository.find();
+    return allUsers;
+  }
+
+  async save(user: User): Promise<User> {
     return await this.userRepository.save(user);
   }
-}
 
+  async delete(user: User) {
+    await this.userRepository.softDelete(user);
+  }
+}
 
 export default new UserRepository();

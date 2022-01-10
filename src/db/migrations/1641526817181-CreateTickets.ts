@@ -11,6 +11,8 @@ export class CreateTickets1641526817181 implements MigrationInterface {
             name: "id",
             type: "uuid",
             isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()'
           },
           {
             name: "buy_date",
@@ -33,6 +35,11 @@ export class CreateTickets1641526817181 implements MigrationInterface {
             type: "timestamp",
             default: "now()",
           },
+          {
+            name: "deleted_at",
+            type: "timestamp",
+            isNullable: true
+          }
         ],
         foreignKeys: [
             {

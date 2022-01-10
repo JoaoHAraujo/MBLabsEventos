@@ -10,6 +10,8 @@ export class CreateEvents1641526052338 implements MigrationInterface {
             name: "id",
             type: "uuid",
             isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()'
           },
           {
             name: "title",
@@ -48,6 +50,11 @@ export class CreateEvents1641526052338 implements MigrationInterface {
             type: "timestamp",
             default: "now()",
           },
+          {
+            name: "deleted_at",
+            type: "timestamp",
+            isNullable: true,
+          }
         ],
         foreignKeys: [
           {
