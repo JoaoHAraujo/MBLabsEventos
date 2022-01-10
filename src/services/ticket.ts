@@ -26,16 +26,15 @@ export class TicketService {
       }`;
 
       ticket.code = generatedCode;
-
-      if (await this.ticketExists(ticket)) {
+      let teste = await this.ticketExists(ticket)
+      if (teste[0]) {
         do {
           ticket.code = `${event.abbreviation}-${
             Math.floor(Math.random() * 90000) + 10000
-          }`;
+          }`
         } while (await this.ticketExists(ticket));
       }
-
-      return ticket;
+      return ticket.code;
     } catch ({ message }) {
       throw new Error(message);
     }
@@ -56,10 +55,13 @@ export class TicketService {
 
       // After payment:
 
-      --event.quantity;
-      
+      await EventService.soldTicket(event);
+
       const ticket = new Ticket();
-      await this.generateCode(ticket, event)
+      ticket.buy_date = new Date();
+      ticket.event_id = event.id;
+      ticket.buyer_id = user.id;
+      await this.generateCode(ticket, event);
 
       await ticketRepository.save(ticket);
 
@@ -78,7 +80,9 @@ export class TicketService {
     }
   }
 
-  //   public async getUsersTickets()
+  public async getUsersTickets() {}
+
+  public async getEventTickets() {}
 }
 
 export default new TicketService();
