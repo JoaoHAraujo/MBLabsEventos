@@ -35,6 +35,11 @@ export class CreateTickets1641526817181 implements MigrationInterface {
             type: "timestamp",
             default: "now()",
           },
+          {
+            name: "deleted_at",
+            type: "timestamp",
+            isNullable: true
+          }
         ],
         foreignKeys: [
             {

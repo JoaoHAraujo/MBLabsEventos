@@ -1,17 +1,18 @@
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 
 import { User } from "./User";
 
 @Entity("events")
 export class Event {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id?: string;
 
   @Column()
@@ -41,4 +42,7 @@ export class Event {
 
   @CreateDateColumn()
   created_at?: Date;
+
+  @DeleteDateColumn()
+  deleted_at?: Date;
 }

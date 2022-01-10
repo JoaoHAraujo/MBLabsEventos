@@ -1,10 +1,11 @@
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 
@@ -12,7 +13,7 @@ import { User } from "./User";
 
 @Entity("events")
 export class Event {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id?: string;
 
   @Column()
@@ -38,9 +39,6 @@ export class Event {
   @CreateDateColumn()
   created_at?: Date;
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
-  }
+  @DeleteDateColumn()
+  deleted_at?: Date;
 }

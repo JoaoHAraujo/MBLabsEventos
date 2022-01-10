@@ -18,6 +18,9 @@ class UserRepository {
     return await this.userRepository.save(user);
   }
 
+  async delete(user: User) {
+    await this.userRepository.softDelete(user);
+  }
 }
 
 export default new UserRepository();
