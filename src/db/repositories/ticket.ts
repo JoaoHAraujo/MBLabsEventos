@@ -5,11 +5,13 @@ class TicketRepository {
     private ticketRepository: Repository<Ticket> = getRepository(Ticket);
 
     async findTickets(opt: Object) {
-        const allTickets = await this.ticketRepository.find(opt);
-        return allTickets;
+        const tickets = await this.ticketRepository.find(opt);
+        return tickets;
     }
 
     async save(ticket: Ticket): Promise<Ticket> {
         return await this.ticketRepository.save(ticket);
     }
 }
+
+export default new TicketRepository();

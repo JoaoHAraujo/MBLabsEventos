@@ -37,10 +37,10 @@ export class EventService {
   // CREATE NEW EVENT
   public async createEvent(event: Event, owner: User) {
     try {
-      const currentUser = await (await UserService.userExists(owner)).profile_type;
+      const currentUser = (await UserService.userExists(owner)).profile_type;
 
-      if (currentUser != 2) {
-        // if (NOT COMPANY)
+      // if (NOT COMPANY)
+      if (currentUser != 2) { 
         throw new Error("ERRO! -> Usuário sem permissão para essa ação!");
       }
       event.owner_id = owner.id;
@@ -72,6 +72,9 @@ export class EventService {
       currentEvent.quantity = event.quantity ? event.quantity : currentEvent.quantity;
 
       currentEvent.price = event.price ? event.price : currentEvent.price;
+
+      currentEvent.abbreviation = event.abbreviation ? event.abbreviation : currentEvent.abbreviation;
+
 
       const updatedEvent = await eventRepository.save(currentEvent)
       return {message:'Evento atualizado com sucesso!', data:updatedEvent};

@@ -29,8 +29,8 @@ export class EventController {
     try {
       const user = { id: req.params.owner_id };
       const event_id = req.params.event_id;
-      const { title, desciption, date, location, quantity, price } = req.body;
-      const event = {id: event_id, title, desciption, date, location, quantity, price}
+      const { title, desciption, date, location, quantity, price, abbreviation } = req.body;
+      const event = {id: event_id, title, desciption, date, location, quantity, price, abbreviation}
       
 
       const result = await EventService.updateEvent(user, event);
