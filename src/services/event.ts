@@ -109,10 +109,10 @@ export class EventService {
 
   // CONSOLIDATE TICKET SOLD
   public async soldTicket(event: Event) {
+    
     try {
-      await this.eventExists(event);
-      event.quantity = --event.quantity;
-      return event;  // FAZER ROTA PATCH
+      event.quantity--;
+      await eventRepository.save(event)
       
     } catch ({ message }) {
       throw new Error(message);
