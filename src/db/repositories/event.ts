@@ -21,15 +21,6 @@ class EventRepository {
   async delete(event: Event) {
     await this.eventRepository.softDelete(event);
   }
-
-  async decrementQuantity(event: Event) {
-    await this.eventRepository
-      .createQueryBuilder("event")
-      .update(Event)
-      .set({ quantity: () => "quantity - 1" })
-      .where("event.id = :id", { id: event.id })
-      .execute();
-  }
 }
 
 export default new EventRepository();
