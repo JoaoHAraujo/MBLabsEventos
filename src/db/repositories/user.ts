@@ -1,15 +1,15 @@
-import { getRepository, Repository } from "typeorm";
+import { FindOneOptions, getRepository, Repository } from "typeorm";
 import { User } from "../entities/User";
 
 class UserRepository {
   private userRepository: Repository<User> = getRepository(User);
 
-  async findOne(opt: Object): Promise<User> {
+  async findOne(opt: FindOneOptions<User>): Promise<User> {
     const existentUser = await this.userRepository.findOne(opt);
     return existentUser;
   }
 
-  async findAll() {
+  async findAll(): Promise<User[]> {
     const allUsers = await this.userRepository.find();
     return allUsers;
   }
@@ -18,7 +18,7 @@ class UserRepository {
     return await this.userRepository.save(user);
   }
 
-  async delete(user: User) {
+  async delete(user: User): Promise<void> {
     await this.userRepository.softDelete(user);
   }
 }
