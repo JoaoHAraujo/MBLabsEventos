@@ -42,6 +42,10 @@ export class CreateEvents1641526052338 implements MigrationInterface {
             type: "numeric",
           },
           {
+            name: "abbreviation",
+            type: "varchar"
+          },
+          {
             name: "owner_id",
             type: "uuid",
           },

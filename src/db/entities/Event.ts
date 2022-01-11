@@ -34,6 +34,9 @@ export class Event {
   price?: number;
 
   @Column()
+  abbreviation?: string;
+
+  @Column()
   owner_id?: string;
 
   @ManyToOne(() => User)

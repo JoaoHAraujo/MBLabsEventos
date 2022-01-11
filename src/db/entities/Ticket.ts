@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 
+import { Event } from "./Event";
 import { User } from "./User";
 
 @Entity("tickets")
@@ -19,7 +20,7 @@ export class Ticket {
   buy_date?: Date;
 
   @Column()
-  ticket_code?: string;
+  code?: string;
 
   @Column()
   event_id?: string;

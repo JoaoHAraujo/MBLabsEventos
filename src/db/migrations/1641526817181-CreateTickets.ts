@@ -19,7 +19,7 @@ export class CreateTickets1641526817181 implements MigrationInterface {
             type: "date",
           },
           {
-            name: "ticket_code",
+            name: "code",
             type: "varchar",
           },
           {

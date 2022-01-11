@@ -3,6 +3,7 @@ import { Router } from "express";
 // Imported routes
 import { router as userRoutes } from "./user";
 import { router as eventRoutes } from "./event";
+import { router as ticketRoutes } from "./ticket";
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.get("/", function (req, res) {
 
 router.use('/user', userRoutes);
 router.use('/event', eventRoutes);
+router.use('/ticket', ticketRoutes)
 
 export default router;
